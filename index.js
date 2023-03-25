@@ -45,7 +45,7 @@ module.exports = (postman, options) => {
     '{{customSections}}': options?.additionalSections ? options.additionalSections.map(x => createCustomSection(x.title, x.text)) : ''
   }
 
-  let template = fs.readFileSync(__dirname + './templates/template.html', 'utf-8')
+  let template = fs.readFileSync(__dirname + '/templates/template.html', 'utf-8')
   Object.keys(remap).forEach(key => template = template.replace(key, remap[key]))
 
   return template

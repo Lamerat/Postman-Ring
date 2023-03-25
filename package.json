@@ -1,6 +1,6 @@
 {
   "name": "postman-rings",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Generate HTML documentation from exported from Postman JSON",
   "main": "index.js",
   "scripts": {
