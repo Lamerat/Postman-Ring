@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "a742091f-345e-4b18-9f14-f66209e1ae49",
+		"name": "Postman Rings Test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15416721"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "language",
+								"value": "{{lang}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"nobody\",\r\n    \"password\": \"mySimplePassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/{{version}}/user/login",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"login"
+							]
+						},
+						"description": "Login in system"
+					},
+					"response": []
+				},
+				{
+					"name": "Single",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "language",
+								"value": "{{lang}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/{{version}}/user/single?email={{email}}&age=18&{{city}}=Sofia",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								"single"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "User email"
+								},
+								{
+									"key": "age",
+									"value": "18",
+									"description": "User age"
+								},
+								{
+									"key": "{{city}}",
+									"value": "Sofia",
+									"description": "User city"
+								}
+							]
+						},
+						"description": "Get single user data by criteria"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "language",
+								"value": "{{lang}}",
+								"type": "text",
+								"description": "Response language"
+							},
+							{
+								"key": "{{custom_header}}",
+								"value": "none",
+								"description": "Just something for test",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\": 23,\r\n    \"address\": {\r\n        \"city\": \"Pleven\",\r\n        \"street\": {\r\n            \"name\": \"Grenadirska\",\r\n            \"number\": 18\r\n        }\r\n    },\r\n    \"interests\": [\r\n        \"sport\",\r\n        \"music\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{address}}/{{version}}/user/:{{id}}",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								":{{id}}"
+							],
+							"variable": [
+								{
+									"key": "{{id}}",
+									"value": "{{mongo}}",
+									"description": "User ID"
+								}
+							]
+						},
+						"description": "Edit user details"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "language",
+								"value": "{{lang}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/{{version}}/user/:{{id}}",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"user",
+								":{{id}}"
+							],
+							"variable": [
+								{
+									"key": "{{id}}",
+									"value": "{{mongo}}",
+									"description": "User ID"
+								}
+							]
+						},
+						"description": "Remove single user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Basic auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "my_basic_password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "my_basic_username",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/{{version}}/basic",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"basic"
+							]
+						},
+						"description": "Example when use basic authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Digest auth",
+					"request": {
+						"auth": {
+							"type": "digest",
+							"digest": [
+								{
+									"key": "username",
+									"value": "my_digest_username",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "my_digest_password",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "SHA-256",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{address}}/{{version}}/digest",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"digest"
+							]
+						},
+						"description": "Example when use digest authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "API Key auth",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "my_api_key_password",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "API_KEY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "language",
+								"value": "{{lang}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{address}}/{{version}}/api-key?date=1955-11-05",
+							"host": [
+								"{{address}}"
+							],
+							"path": [
+								"{{version}}",
+								"api-key"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1955-11-05"
+								}
+							]
+						},
+						"description": "Example when use API KEY authorization"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "address",
+			"value": "http://api-example.net",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2RiYzY1NTVkNDk3NDczZWFlNDA5ZjkiLCJ0b2tlbkRhdGUiOiIyMDIzLTAyLTAyVDE0OjQwOjMwLjI3MVoiLCJpYXQiOjE2NzUzNDg4MzB9.huV4E9-Gu_YmrcT3IlBNGXY4a9CnGBYjzUPbsKVZlbo",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "_id",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "pop@armenia.com",
+			"type": "string"
+		},
+		{
+			"key": "lang",
+			"value": "bg",
+			"type": "string"
+		},
+		{
+			"key": "city",
+			"value": "city",
+			"type": "string"
+		},
+		{
+			"key": "version",
+			"value": "v1",
+			"type": "string"
+		},
+		{
+			"key": "mongo",
+			"value": "641ec45e6c4be0c99ab37035",
+			"type": "string"
+		},
+		{
+			"key": "custom_header",
+			"value": "Custom-Header-Name",
+			"type": "string"
+		}
+	]
+}

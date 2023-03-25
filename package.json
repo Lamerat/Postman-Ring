@@ -1,0 +1,16 @@
+{
+  "name": "postman-rings",
+  "version": "0.0.1",
+  "description": "Generate HTML documentation from exported from Postman JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lamerat/Postman-Ring.git"
+  },
+  "keywords": [],
+  "author": "Simeon Mladenov",
+  "license": "ISC"
+}
